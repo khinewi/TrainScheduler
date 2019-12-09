@@ -1,17 +1,15 @@
-$("#add-Train-btn").on("click", function(event) {
-    event.preventDefault();
+$(document).ready(function () {
 
-
-    var train = $("#Train-name-input").val().trim();
-    var destination = $("#Destination-input").val().trim();
-    var trainTime = $("#First-Train-Time-input").val().trim();
-    var frequency = $("#Frequency-input").val().trim();
-
-    console.log(train);
-    console.log(destination);
-    console.log(trainTime);
-    console.log(frequency);
-});
+var config = {
+    apiKey: "AIzaSyDS_DlJpQp5x0MVF7OjqlMyTrBxnMptDeY",
+    authDomain: "trainschedule-2de0e.firebaseapp.com",
+    databaseURL: "https://trainschedule-2de0e.firebaseio.com",
+    storageBucket: "trainschedule-2de0e.appspot.com",
+  };
+  
+  firebase.initializeApp(config);
+  
+  var database = firebase.database();
 
 
 database.ref().on("child_added", function (childSnapshot) {
@@ -21,6 +19,21 @@ database.ref().on("child_added", function (childSnapshot) {
     var trainTime = childSnapshot.val().firstTrainTime;
     var frequency = childSnapshot.val().frequency;
 
+
+    $("#add-Train-btn").on("click", function(event) {
+        event.preventDefault();
+    
+    
+        var train = $("#Train-name-input").val().trim();
+        var destination = $("#Destination-input").val().trim();
+        var trainTime = $("#First-Train-Time-input").val().trim();
+        var frequency = $("#Frequency-input").val().trim();
+    
+        console.log(train);
+        console.log(destination);
+        console.log(trainTime);
+        console.log(frequency);
+    });
 
 // MOMENT - Class Code //
 
@@ -52,5 +65,7 @@ var tRow = $("<tr>");
 
 tRow.append("<td>" + train  + destination + trainTime + frequency + "</td>", "<td>" + "</td>");
 $("tbody").append(tRow);
+
+});
 
 });
