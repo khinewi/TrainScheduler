@@ -1,7 +1,6 @@
-$("#submit").on("click", function(event) {
+$("#add-Train-btn").on("click", function(event) {
     event.preventDefault();
 
-    var tRow = $("<tr>");
 
     var train = $("#Train-name-input").val().trim();
     var destination = $("#Destination-input").val().trim();
@@ -49,6 +48,7 @@ console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
 var nextTrain = moment().add(tMinutesTillTrain, "minutes");
 console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));  
 
+var tRow = $("<tr>");
 
 tRow.append("<td>" + train  + destination + trainTime + frequency + "</td>", "<td>" + "</td>");
 $("tbody").append(tRow);
