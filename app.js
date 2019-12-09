@@ -12,19 +12,15 @@ $("#submit").on("click", function(event) {
     console.log(destination);
     console.log(trainTime);
     console.log(frequency);
-
 });
+
 
 database.ref().on("child_added", function (childSnapshot) {
 
-    // Store everything into a variable.
     var train = childSnapshot.val().name;
     var destination = childSnapshot.val().destination;
     var trainTime = childSnapshot.val().firstTrainTime;
     var frequency = childSnapshot.val().frequency;
-
-tRow.append("<td>" + train  + destination + trainTime + frequency + "</td>", "<td>" + "</td>");
-    $("tbody").append(tRow);
 
 
 // MOMENT - Class Code //
@@ -52,5 +48,9 @@ console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
 // Next Train
 var nextTrain = moment().add(tMinutesTillTrain, "minutes");
 console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));  
+
+
+tRow.append("<td>" + train  + destination + trainTime + frequency + "</td>", "<td>" + "</td>");
+$("tbody").append(tRow);
 
 });
