@@ -1,4 +1,3 @@
-$(document).ready(function () {
 
 var config = {
     apiKey: "AIzaSyDS_DlJpQp5x0MVF7OjqlMyTrBxnMptDeY",
@@ -10,15 +9,6 @@ var config = {
   firebase.initializeApp(config);
   
   var database = firebase.database();
-
-
-database.ref().on("child_added", function (childSnapshot) {
-
-    var train = childSnapshot.val().name;
-    var destination = childSnapshot.val().destination;
-    var trainTime = childSnapshot.val().firstTrainTime;
-    var frequency = childSnapshot.val().frequency;
-
 
     $("#add-Train-btn").on("click", function(event) {
         event.preventDefault();
@@ -34,6 +24,13 @@ database.ref().on("child_added", function (childSnapshot) {
         console.log(trainTime);
         console.log(frequency);
     });
+
+database.ref().on("child_added", function (childSnapshot) {
+
+    var train = childSnapshot.val().name;
+    var destination = childSnapshot.val().destination;
+    var trainTime = childSnapshot.val().firstTrainTime;
+    var frequency = childSnapshot.val().frequency;
 
 // MOMENT - Class Code //
 
@@ -65,7 +62,5 @@ var tRow = $("<tr>");
 
 tRow.append("<td>" + train  + destination + trainTime + frequency + "</td>", "<td>" + "</td>");
 $("tbody").append(tRow);
-
-});
 
 });
